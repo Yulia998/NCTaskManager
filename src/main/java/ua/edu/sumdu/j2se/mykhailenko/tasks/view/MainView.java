@@ -1,5 +1,7 @@
 package ua.edu.sumdu.j2se.mykhailenko.tasks.view;
 
+import ua.edu.sumdu.j2se.mykhailenko.tasks.controller.Controller;
+
 import java.io.IOException;
 
 public class MainView extends View {
@@ -17,14 +19,13 @@ public class MainView extends View {
         try {
             variant = Integer.parseInt(reader.readLine());
             if (variant < 1 || variant > 6) {
-                System.out.println("Введеного пункта меню не существует\n");
-                return printInfo(object);
+                System.out.println(MENUITEM_NOT_FOUND + "\n");
+                variant = Controller.MAIN_MENU;
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {
-            System.out.println("Неверный формат ввода\n");
-            return printInfo(object);
+            System.out.println(WRONG_FORMAT + "\n");
         }
         return variant;
     }

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class AddView extends View {
 
     public LocalDateTime inputDateTime() {
-        System.out.print("Введите дату выполнения (Г-М-Д Ч:М): ");
+        System.out.print(DATE);
         LocalDateTime result = super.inputDate();
         if (result == null) {
             return inputDateTime();
@@ -17,7 +17,7 @@ public class AddView extends View {
     }
 
     public LocalDateTime inputDateStart() {
-        System.out.print("Введите дату начала (Г-М-Д Ч:М): ");
+        System.out.print(DATE_START);
         LocalDateTime result = super.inputDate();
         if (result == null) {
             return inputDateStart();
@@ -26,7 +26,7 @@ public class AddView extends View {
     }
 
     public LocalDateTime inputDateEnd() {
-        System.out.print("Введите дату окончания (Г-М-Д Ч:М): ");
+        System.out.print(DATE_END);
         LocalDateTime result = super.inputDate();
         if (result == null) {
             return inputDateEnd();
@@ -41,15 +41,15 @@ public class AddView extends View {
                 case "да":
                     return 1;
                 case "нет":
-                    return 0;
+                    return -1;
                 default:
                     System.out.println("Неверный ввод. Попробуйте еще раз ");
                     return repeat();
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return -1;
         }
+        return Controller.MAIN_MENU;
     }
 
     public int printInfo(Object object) {

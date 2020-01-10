@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public class EditRepeatView extends View {
     public LocalDateTime inputDateTime() {
-        System.out.print("Введите дату выполнения (Г-М-Д Ч:М): ");
+        System.out.print(DATE);
         LocalDateTime result = super.inputDate();
         if (result == null) {
             return inputDateTime();
@@ -15,7 +15,7 @@ public class EditRepeatView extends View {
     }
 
     public LocalDateTime inputDateStart() {
-        System.out.print("Введите дату начала (Г-М-Д Ч:М): ");
+        System.out.print(DATE_START);
         LocalDateTime result = super.inputDate();
         if (result == null) {
             return inputDateStart();
@@ -24,7 +24,7 @@ public class EditRepeatView extends View {
     }
 
     public LocalDateTime inputDateEnd() {
-        System.out.print("Введите дату окончания (Г-М-Д Ч:М): ");
+        System.out.print(DATE_END);
         LocalDateTime result = super.inputDate();
         if (result == null) {
             return inputDateEnd();

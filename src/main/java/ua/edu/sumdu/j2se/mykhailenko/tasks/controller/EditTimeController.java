@@ -17,6 +17,7 @@ public class EditTimeController extends SubController {
         EditTimeView editTime = (EditTimeView) view;
         LocalDateTime dateStartTime, dateEndTime;
         int interval;
+        boolean success = true;
         try {
             if (task.isRepeated()) {
                 dateStartTime = editTime.inputDateStart();
@@ -28,7 +29,11 @@ public class EditTimeController extends SubController {
                 task.setTime(dateStartTime);
             }
         } catch (IllegalArgumentException e) {
-            return editTime.DateException();
+            success = false;
+            editTime.dateException();
+        }
+        if (!success) {
+            return Controller.MAIN_MENU;
         }
         return editTime.printInfo(null);
     }

@@ -8,7 +8,7 @@ public class DeleteView extends View {
         if ((boolean) object) {
             System.out.println("\tЗадача удалена\n");
         } else {
-            System.out.println("\tЗадача не найдена\n");
+            System.out.println("\t" + TASK_NOT_FOUND + "\n");
         }
         return Controller.MAIN_MENU;
     }

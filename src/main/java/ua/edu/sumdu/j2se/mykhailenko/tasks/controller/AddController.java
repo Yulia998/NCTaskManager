@@ -20,8 +20,9 @@ public class AddController extends Controller {
         int repeat = addView.repeat();
         LocalDateTime dateStartTime, dateEndTime;
         Task task;
+        boolean success = true;
         try {
-            if (repeat == 0) {
+            if (repeat == -1) {
                 dateStartTime = addView.inputDateTime();
                 task = new Task(name, dateStartTime);
                 taskList.add(task);
@@ -39,7 +40,11 @@ public class AddController extends Controller {
                 return Controller.MAIN_MENU;
             }
         } catch (IllegalArgumentException e) {
-            return addView.DateException();
+            success = false;
+            addView.dateException();
+        }
+        if (!success) {
+            return Controller.MAIN_MENU;
         }
         return addView.printInfo(null);
     }

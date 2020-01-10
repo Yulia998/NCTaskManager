@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class CalendarView extends View {
 
     public LocalDateTime inputDateFrom() {
-        System.out.print("\nВведите начальное время (Г-М-Д Ч:М): ");
+        System.out.print("\n" + DATE_START);
         LocalDateTime result = super.inputDate();
         if (result == null) {
             return inputDateFrom();
@@ -16,7 +16,7 @@ public class CalendarView extends View {
     }
 
     public LocalDateTime inputDateTo() {
-        System.out.print("Введите конечное время (Г-М-Д Ч:М): ");
+        System.out.print(DATE_END);
         LocalDateTime result = super.inputDate();
         if (result == null) {
             return inputDateTo();

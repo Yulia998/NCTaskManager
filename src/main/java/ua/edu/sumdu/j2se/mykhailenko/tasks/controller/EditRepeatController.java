@@ -16,6 +16,7 @@ public class EditRepeatController extends SubController {
         EditRepeatView editRepeat = (EditRepeatView) view;
         LocalDateTime dateStartTime, dateEndTime;
         int interval;
+        boolean success = true;
         try {
             if (task.isRepeated()) {
                 dateStartTime = editRepeat.inputDateTime();
@@ -27,7 +28,11 @@ public class EditRepeatController extends SubController {
                 task.setTime(dateStartTime, dateEndTime, interval);
             }
         } catch (IllegalArgumentException e) {
-            return editRepeat.DateException();
+            success = false;
+            editRepeat.dateException();
+        }
+        if (!success) {
+            return Controller.MAIN_MENU;
         }
         return editRepeat.printInfo(null);
     }

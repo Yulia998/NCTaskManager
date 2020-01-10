@@ -1,5 +1,7 @@
 package ua.edu.sumdu.j2se.mykhailenko.tasks.view;
 
+import ua.edu.sumdu.j2se.mykhailenko.tasks.controller.Controller;
+
 import java.io.IOException;
 
 public class EditMenuView extends View {
@@ -11,18 +13,17 @@ public class EditMenuView extends View {
         System.out.println("3. Сделать задачу активной/неактивной");
         System.out.println("4. Сделать задачу повторяемой/неповторяемой");
         System.out.println("5. Вернуться к главному меню");
-        int variant = 1;
+        int variant = 0;
         try {
             variant = Integer.parseInt(reader.readLine());
             if (variant < 1 || variant > 5) {
-                System.out.println("Введеного пункта меню не существует\n");
-                return printInfo(object);
+                System.out.println(MENUITEM_NOT_FOUND + "\n");
+                variant = Controller.MAIN_MENU;
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {
-            System.out.println("Неверный формат ввода\n");
-            return printInfo(object);
+            System.out.println(WRONG_FORMAT + "\n");
         }
         return variant;
     }

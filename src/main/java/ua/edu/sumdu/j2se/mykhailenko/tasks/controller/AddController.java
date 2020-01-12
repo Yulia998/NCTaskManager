@@ -1,5 +1,6 @@
 package ua.edu.sumdu.j2se.mykhailenko.tasks.controller;
 
+import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.model.Task;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.view.AddView;
@@ -10,6 +11,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class AddController extends Controller {
+    private static final Logger LOGGER = Logger.getLogger(AddController.class);
+
     public AddController(View view, int actionPerform) {
         super(view, actionPerform);
     }
@@ -42,6 +45,7 @@ public class AddController extends Controller {
         } catch (IllegalArgumentException e) {
             success = false;
             addView.dateException();
+            LOGGER.error(Controller.LOG_MESSAGE);
         }
         if (!success) {
             return Controller.MAIN_MENU;

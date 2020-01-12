@@ -1,5 +1,7 @@
 package ua.edu.sumdu.j2se.mykhailenko.tasks.view;
 
+import org.apache.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,6 +16,7 @@ public abstract class View {
     public static final String DATE_END = "Введите дату окончания (Г-М-Д Ч:М): ";
     public static final String TASK_NOT_FOUND = "Задача не найдена";
     public static final String MENUITEM_NOT_FOUND = "Введеного пункта меню не существует";
+    private static final Logger LOGGER = Logger.getLogger(View.class);
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public abstract int printInfo(Object object);
@@ -24,7 +27,7 @@ public abstract class View {
         try {
             name = reader.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         return name;
     }
@@ -35,9 +38,10 @@ public abstract class View {
         try {
             dateTime = LocalDateTime.parse(reader.readLine(), formatter);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         } catch (DateTimeParseException e) {
             System.out.println(WRONG_FORMAT);
+            LOGGER.error("Введенное значение не может быть преобразовано в дату");
         }
         return dateTime;
     }
@@ -49,9 +53,10 @@ public abstract class View {
         try {
             interval = Integer.parseInt(reader.readLine());
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         } catch (NumberFormatException e) {
             exception = true;
+            LOGGER.error("Введенное значение не соответствует целочисленному значению интервала");
         }
         if (exception) {
             System.out.println(WRONG_FORMAT);
@@ -66,7 +71,7 @@ public abstract class View {
         try {
             id = reader.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         return id;
     }

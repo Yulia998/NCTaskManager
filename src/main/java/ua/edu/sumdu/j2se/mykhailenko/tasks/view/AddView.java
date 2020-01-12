@@ -1,11 +1,14 @@
 package ua.edu.sumdu.j2se.mykhailenko.tasks.view;
 
+import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.controller.Controller;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class AddView extends View {
+
+    private static final Logger LOGGER = Logger.getLogger(AddView.class);
 
     public LocalDateTime inputDateTime() {
         System.out.print(DATE);
@@ -44,10 +47,11 @@ public class AddView extends View {
                     return -1;
                 default:
                     System.out.println("Неверный ввод. Попробуйте еще раз ");
+                    LOGGER.warn("Введенное значение повторения не соответстует одному из предложенных");
                     return repeat();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         return Controller.MAIN_MENU;
     }

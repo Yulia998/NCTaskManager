@@ -6,6 +6,7 @@ import ua.edu.sumdu.j2se.mykhailenko.tasks.view.View;
 public abstract class Controller {
     public static final int MAIN_MENU = 0;
     public static final int QUIT = 6;
+    public static final String LOG_MESSAGE = "Один из временных значений задачи имеет значение null/0";
 
     protected View view;
     protected int actionPerform;

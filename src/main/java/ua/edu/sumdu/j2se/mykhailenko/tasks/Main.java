@@ -4,13 +4,11 @@ import ua.edu.sumdu.j2se.mykhailenko.tasks.controller.Controller;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.controller.MainController;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.model.ArrayTaskList;
-import ua.edu.sumdu.j2se.mykhailenko.tasks.model.Task;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.model.TaskIO;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.view.MainView;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.view.View;
 
 import java.io.*;
-import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) throws IOException {

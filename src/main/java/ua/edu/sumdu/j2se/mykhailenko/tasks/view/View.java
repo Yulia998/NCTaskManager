@@ -27,7 +27,7 @@ public abstract class View {
         try {
             name = reader.readLine();
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e);
         }
         return name;
     }
@@ -38,7 +38,7 @@ public abstract class View {
         try {
             dateTime = LocalDateTime.parse(reader.readLine(), formatter);
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e);
         } catch (DateTimeParseException e) {
             System.out.println(WRONG_FORMAT);
             LOGGER.error("Введенное значение не может быть преобразовано в дату");
@@ -53,7 +53,7 @@ public abstract class View {
         try {
             interval = Integer.parseInt(reader.readLine());
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e);
         } catch (NumberFormatException e) {
             exception = true;
             LOGGER.error("Введенное значение не соответствует целочисленному значению интервала");
@@ -71,7 +71,7 @@ public abstract class View {
         try {
             id = reader.readLine();
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e);
         }
         return id;
     }

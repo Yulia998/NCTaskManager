@@ -26,7 +26,7 @@ public class EditMenuView extends View {
                 LOGGER.warn("Выбран несуществующий пункт меню редактирования");
             }
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e);
         } catch (NumberFormatException e) {
             System.out.println(WRONG_FORMAT + "\n");
             LOGGER.error("Введенное значение не соответствует целочисленному" +

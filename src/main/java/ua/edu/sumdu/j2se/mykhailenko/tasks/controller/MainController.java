@@ -18,6 +18,9 @@ public class MainController extends Controller {
         this.controllers.add(new DeleteController(new DeleteView(), 3));
         this.controllers.add(new EditController(new EditView(), 2));
         this.controllers.add(new ViewTasksController(new TasksView(), 4));
+        NotificationController notify = new NotificationController(new NotificationView(), taskList);
+        notify.setDaemon(true);
+        notify.start();
     }
 
 

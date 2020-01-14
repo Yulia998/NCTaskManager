@@ -51,7 +51,7 @@ public class AddView extends View {
                     return repeat();
             }
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e);
         }
         return Controller.MAIN_MENU;
     }

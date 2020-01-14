@@ -27,7 +27,7 @@ public class MainView extends View {
                 LOGGER.warn("Выбран несуществующий пункт основного меню");
             }
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e);
         } catch (NumberFormatException e) {
             System.out.println(WRONG_FORMAT + "\n");
             LOGGER.error("Введенное значение не соответствует целочисленному" +

@@ -9,6 +9,6 @@ public class ViewTasksController extends Controller{
     }
 
     public int process(AbstractTaskList taskList) {
-        return view.printInfo(taskList);
+        return view.printInfo(taskList + "\n");
     }
 }

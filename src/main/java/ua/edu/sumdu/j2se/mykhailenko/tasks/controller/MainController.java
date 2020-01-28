@@ -14,10 +14,10 @@ public class MainController extends Controller {
         super(view, 0);
         this.controllers.add(this);
         this.controllers.add(new AddController(new AddView(), 1));
-        this.controllers.add(new CalendarController(new CalendarView(), 5));
+        this.controllers.add(new CalendarController(new View(), 5));
         this.controllers.add(new DeleteController(new DeleteView(), 3));
-        this.controllers.add(new EditController(new EditView(), 2));
-        this.controllers.add(new ViewTasksController(new TasksView(), 4));
+        this.controllers.add(new EditController(new View(), 2));
+        this.controllers.add(new ViewTasksController(new View(), 4));
         NotificationController notify = new NotificationController(new NotificationView(), taskList);
         notify.setDaemon(true);
         notify.start();

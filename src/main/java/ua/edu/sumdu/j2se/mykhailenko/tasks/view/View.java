@@ -1,6 +1,7 @@
 package ua.edu.sumdu.j2se.mykhailenko.tasks.view;
 
 import org.apache.log4j.Logger;
+import ua.edu.sumdu.j2se.mykhailenko.tasks.controller.Controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public abstract class View {
+public class View {
     public static final String WRONG_FORMAT = "Неверный формат ввода";
     public static final String DATE = "Введите дату выполнения (Г-М-Д Ч:М): ";
     public static final String DATE_START = "Введите дату начала (Г-М-Д Ч:М): ";
@@ -19,20 +20,24 @@ public abstract class View {
     private static final Logger LOGGER = Logger.getLogger(View.class);
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public abstract int printInfo(Object object);
+    public int printInfo(Object object) {
+        System.out.println(object);
+        return Controller.MAIN_MENU;
+    }
 
-    public String inputName() {
-        System.out.print("\nВведите название задачи: ");
-        String name = "";
+    public String inputNameOrID(String request) {
+        System.out.print(request);
+        String nameID = "";
         try {
-            name = reader.readLine();
+            nameID = reader.readLine();
         } catch (IOException e) {
             LOGGER.error(e);
         }
-        return name;
+        return nameID;
     }
 
-    public LocalDateTime inputDate() {
+    public LocalDateTime inputDate(String request) {
+        System.out.print(request);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = null;
         try {
@@ -42,6 +47,9 @@ public abstract class View {
         } catch (DateTimeParseException e) {
             System.out.println(WRONG_FORMAT);
             LOGGER.error("Введенное значение не может быть преобразовано в дату");
+        }
+        if (dateTime == null) {
+            return inputDate(request);
         }
         return dateTime;
     }
@@ -63,17 +71,6 @@ public abstract class View {
             return inputInterval();
         }
         return interval * 3600;
-    }
-
-    public String inputId() {
-        System.out.print("\nВведите id задачи: ");
-        String id = "";
-        try {
-            id = reader.readLine();
-        } catch (IOException e) {
-            LOGGER.error(e);
-        }
-        return id;
     }
 
     public void dateException() {

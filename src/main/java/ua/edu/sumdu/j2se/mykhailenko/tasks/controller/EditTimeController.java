@@ -2,7 +2,6 @@ package ua.edu.sumdu.j2se.mykhailenko.tasks.controller;
 
 import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.model.Task;
-import ua.edu.sumdu.j2se.mykhailenko.tasks.view.EditTimeView;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.view.View;
 
 import java.time.LocalDateTime;
@@ -16,28 +15,27 @@ public class EditTimeController extends SubController {
 
     @Override
     public int run(Task task) {
-        EditTimeView editTime = (EditTimeView) view;
         LocalDateTime dateStartTime, dateEndTime;
         int interval;
         boolean success = true;
         try {
             if (task.isRepeated()) {
-                dateStartTime = editTime.inputDateStart();
-                dateEndTime = editTime.inputDateEnd();
-                interval = editTime.inputInterval();
+                dateStartTime = view.inputDate("Введите новую дату начала (Г-М-Д Ч:М): ");
+                dateEndTime = view.inputDate("Введите новую дату окончания (Г-М-Д Ч:М): ");
+                interval = view.inputInterval();
                 task.setTime(dateStartTime, dateEndTime, interval);
             } else {
-                dateStartTime = editTime.inputDateTime();
+                dateStartTime = view.inputDate("Введите новую дату выполнения (Г-М-Д Ч:М): ");
                 task.setTime(dateStartTime);
             }
         } catch (IllegalArgumentException e) {
             success = false;
-            editTime.dateException();
+            view.dateException();
             LOGGER.error(Controller.LOG_MESSAGE);
         }
         if (!success) {
             return Controller.MAIN_MENU;
         }
-        return editTime.printInfo(null);
+        return view.printInfo("\nВремя задачи изменено\n");
     }
 }

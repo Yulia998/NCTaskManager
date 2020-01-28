@@ -15,7 +15,7 @@ public class EditController extends Controller {
 
     @Override
     public int process(AbstractTaskList taskList) {
-        String id = view.inputId();
+        String id = view.inputNameOrID("\nВведите id задачи: ");
         Task taskChange = null;
         for (Task task : taskList) {
             if (task.getId().equals(id)) {
@@ -24,7 +24,7 @@ public class EditController extends Controller {
             }
         }
         if (taskChange == null) {
-            return view.printInfo(null);
+            return view.printInfo(View.TASK_NOT_FOUND);
         }
         editMenu.run(taskChange);
         return Controller.MAIN_MENU;

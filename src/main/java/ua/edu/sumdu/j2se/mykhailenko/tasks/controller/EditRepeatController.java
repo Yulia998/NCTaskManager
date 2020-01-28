@@ -2,7 +2,6 @@ package ua.edu.sumdu.j2se.mykhailenko.tasks.controller;
 
 import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.model.Task;
-import ua.edu.sumdu.j2se.mykhailenko.tasks.view.EditRepeatView;
 import ua.edu.sumdu.j2se.mykhailenko.tasks.view.View;
 
 import java.time.LocalDateTime;
@@ -16,28 +15,27 @@ public class EditRepeatController extends SubController {
 
     @Override
     public int run(Task task) {
-        EditRepeatView editRepeat = (EditRepeatView) view;
         LocalDateTime dateStartTime, dateEndTime;
         int interval;
         boolean success = true;
         try {
             if (task.isRepeated()) {
-                dateStartTime = editRepeat.inputDateTime();
+                dateStartTime = view.inputDate(View.DATE);
                 task.setTime(dateStartTime);
             } else {
-                dateStartTime = editRepeat.inputDateStart();
-                dateEndTime = editRepeat.inputDateEnd();
-                interval = editRepeat.inputInterval();
+                dateStartTime = view.inputDate(View.DATE_START);
+                dateEndTime = view.inputDate(View.DATE_END);
+                interval = view.inputInterval();
                 task.setTime(dateStartTime, dateEndTime, interval);
             }
         } catch (IllegalArgumentException e) {
             success = false;
-            editRepeat.dateException();
+            view.dateException();
             LOGGER.error(Controller.LOG_MESSAGE);
         }
         if (!success) {
             return Controller.MAIN_MENU;
         }
-        return editRepeat.printInfo(null);
+        return view.printInfo("\nПовторяемость задачи изменено\n");
     }
 }

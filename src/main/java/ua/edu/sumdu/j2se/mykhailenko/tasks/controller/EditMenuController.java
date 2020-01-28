@@ -12,10 +12,10 @@ public class EditMenuController extends SubController {
     public EditMenuController(View view, int actionPerform) {
         super(view, actionPerform);
         controllersEdit.add(this);
-        controllersEdit.add(new EditNameController(new EditNameView(), 1));
-        controllersEdit.add(new EditTimeController(new EditTimeView(), 2));
+        controllersEdit.add(new EditNameController(new View(), 1));
+        controllersEdit.add(new EditTimeController(new View(), 2));
         controllersEdit.add(new EditActiveController(new EditActiveView(), 3));
-        controllersEdit.add(new EditRepeatController(new EditRepeatView(), 4));
+        controllersEdit.add(new EditRepeatController(new View(), 4));
     }
 
     public int run(Task task) {

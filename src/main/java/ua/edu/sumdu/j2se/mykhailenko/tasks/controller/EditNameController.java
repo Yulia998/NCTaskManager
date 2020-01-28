@@ -10,8 +10,8 @@ public class EditNameController extends SubController {
 
     @Override
     public int run(Task task) {
-        String name = view.inputName();
+        String name = view.inputNameOrID("\nВведите название задачи: ");
         task.setTitle(name);
-        return view.printInfo(null);
+        return view.printInfo("Название задачи было изменено\n");
     }
 }

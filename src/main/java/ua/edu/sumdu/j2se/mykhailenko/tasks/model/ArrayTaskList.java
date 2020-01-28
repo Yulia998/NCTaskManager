@@ -25,7 +25,9 @@ public class ArrayTaskList extends AbstractTaskList {
                 j++;
                 removed = true;
             }
-            list[i] = list[j];
+            if (j < size) {
+                list[i] = list[j];
+            }
         }
         if (removed) {
             list[size - 1] = null;

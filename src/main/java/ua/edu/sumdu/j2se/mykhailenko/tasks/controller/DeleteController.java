@@ -12,7 +12,7 @@ public class DeleteController extends Controller {
 
     public int process(AbstractTaskList taskList) {
         DeleteView deleteView = (DeleteView) view;
-        String id = deleteView.inputId();
+        String id = deleteView.inputNameOrID("\nВведите id задачи: ");
         boolean resultInfo = false;
         for (Task task : taskList) {
             if (task.getId().equals(id)) {

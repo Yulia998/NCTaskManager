@@ -19,21 +19,21 @@ public class AddController extends Controller {
 
     public int process(AbstractTaskList taskList) {
         AddView addView = (AddView) view;
-        String name = addView.inputName();
+        String name = addView.inputNameOrID("\nВведите название задачи: ");
         int repeat = addView.repeat();
         LocalDateTime dateStartTime, dateEndTime;
         Task task;
         boolean success = true;
         try {
             if (repeat == -1) {
-                dateStartTime = addView.inputDateTime();
+                dateStartTime = addView.inputDate(View.DATE);
                 task = new Task(name, dateStartTime);
                 taskList.add(task);
                 task.setId(LocalDate.now() + "-" + LocalTime.now().getHour()
                         + LocalTime.now().getMinute() + LocalTime.now().getSecond());
             } else if (repeat == 1) {
-                dateStartTime = addView.inputDateStart();
-                dateEndTime = addView.inputDateEnd();
+                dateStartTime = addView.inputDate(View.DATE_START);
+                dateEndTime = addView.inputDate(View.DATE_END);
                 repeat = addView.inputInterval();
                 task = new Task(name, dateStartTime, dateEndTime, repeat);
                 taskList.add(task);
@@ -50,6 +50,6 @@ public class AddController extends Controller {
         if (!success) {
             return Controller.MAIN_MENU;
         }
-        return addView.printInfo(null);
+        return addView.printInfo("\n\tЗадача добавлена\n");
     }
 }
